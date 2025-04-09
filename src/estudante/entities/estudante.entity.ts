@@ -1,8 +1,20 @@
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity('estudantes')
 export class Estudante {
-    id: number;
-    nome: string;
-    matricula: string;
-    email: string;
-    dt_nascimento: Date;
-    // cidade_id: number;
+  @PrimaryGeneratedColumn('rowid')
+  id: number;
+
+  @Column()
+  nome: string;
+
+  @Column()
+  matricula: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  dt_nascimento: Date;
+  // cidade_id: number;
 }

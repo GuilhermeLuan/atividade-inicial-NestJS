@@ -7,18 +7,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: "mysql",
-      host: "localhost",
-      port: 3306,
-      username: "root",
-      password: "admin",
-      database: "test",
+      type: 'sqlite',
+      database: 'db.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    
-    
-    EstudanteModule],
+    EstudanteModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

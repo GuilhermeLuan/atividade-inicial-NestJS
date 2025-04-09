@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEstudanteDto } from './dto/create-estudante.dto';
 import { UpdateEstudanteDto } from './dto/update-estudante.dto';
+import { Repository } from 'typeorm';
+import { Estudante } from './entities/estudante.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class EstudanteService {
-  create(createEstudanteDto: CreateEstudanteDto) {
-    return 'This action adds a new estudante';
+  constructor(
+    @InjectRepository(Estudante)
+    private readonly repository: Repository<Estudante>,
+  ) {}
+
+  create(dto: CreateEstudanteDto) {
+    const estudante = this.repository.create(dto);
+    return this.repository.save(estudante);
   }
 
   findAll() {
-    return `This action returns all estudante`;
+    return this.repository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} estudante`;
+    return this.repository.findOneBy({ id });
   }
 
-  update(id: number, updateEstudanteDto: UpdateEstudanteDto) {
-    return `This action updates a #${id} estudante`;
+  async update(id: number, dto: UpdateEstudanteDto) {
+    const estudanteToUpdate = await this.repository.findOneBy({ id });
+
+    if (!estudanteToUpdate) return null;
+
+    this.repository.merge(estudanteToUpdate, dto);
+    return this.repository.save(estudanteToUpdate);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} estudante`;
+  async remove(id: number) {
+    const estudanteToUpdate = await this.repository.findOneBy({ id });
+    if (!estudanteToUpdate) return null;
+    return this.repository.remove(estudanteToUpdate);
   }
 }
