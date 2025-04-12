@@ -1,14 +1,9 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsString } from 'class-validator';
 
 export class CreateCidadeDto {
+  @IsString()
+  nome: string;
 
-    @IsNumber()
-    id: number;
-
-    @IsString()
-    nome: string;
-
-    @IsString()
-    uf_id: string;
-
+  @IsString()
+  uf_id: string;
 }

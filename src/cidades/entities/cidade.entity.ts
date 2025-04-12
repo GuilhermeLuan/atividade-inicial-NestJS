@@ -1,11 +1,8 @@
-import { Column, Entity, PrimaryColumn} from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('cidades')
 export class Cidade {
-    @PrimaryColumn()
-    id_coluna: string;
-
-    @Column()
+    @PrimaryGeneratedColumn('rowid')
     id: number;
     
     @Column()
