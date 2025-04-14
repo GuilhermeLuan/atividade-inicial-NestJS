@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Uf } from './entities/uf.entity';
+import { Uf } from './entities/uf.entitiy';
 import { CreateUfDto } from './dto/create-uf.dto';
-import { UpdateUfDto } from './dto/update-uf.dto';
+import { UpdateUfDto } from './dto/update_uf.dto';
 
 @Injectable()
 export class UfService {

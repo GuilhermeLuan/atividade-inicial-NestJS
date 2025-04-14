@@ -1,0 +1,33 @@
+POST http://localhost:3000/estudantes
+content-type: application/json
+
+{
+  "nome": "João Silva",
+  "matricula": "20250001",
+  "email": "joao.silva@example.com",
+  "dt_nascimento": "2000-05-15",
+  "cidadeId": 1
+}
+
+###
+GET http://localhost:3000/estudantes
+content-type: application/json
+
+### 
+POST http://localhost:3000/cidades
+content-type: application/json
+
+{
+  "nome": "Rio de Janeiro",
+  "ufId": 1
+}
+
+###
+
+POST http://localhost:3000/uf
+content-type: application/json
+
+{
+  "nome": "Minas Gerais",
+  "sigla": "MG"
+}

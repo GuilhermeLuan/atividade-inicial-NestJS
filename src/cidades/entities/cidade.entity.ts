@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Estudante } from 'src/estudante/entities/estudante.entity';
+import { Uf } from 'src/uf/entities/uf.entitiy';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('cidades')
 export class Cidade {
@@ -8,6 +10,9 @@ export class Cidade {
     @Column()
     nome: string;
     
-    @Column()
-    uf_id: string;
+    @ManyToOne(() => Uf, uf => uf.cidades)
+    uf: Uf;
+
+    @OneToMany(() => Estudante, estudante => estudante.cidade)
+    estudantes: Estudante[];
 }
